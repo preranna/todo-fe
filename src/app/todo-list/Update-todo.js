@@ -1,15 +1,15 @@
 import { Switch } from "@headlessui/react";
 import { useState } from "react";
 
-export function AddTodo({ onSubmit }) {
-    const [name, setName] = useState("");
-    const [completed, setCompleted] = useState(false);
-
+export function UpdateTodo({ onSubmit, todo }) {
+    const [name, setName] = useState(todo.name);
+    const [completed, setCompleted] = useState(todo.completed);
+  
     const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit({ name, completed });
+      e.preventDefault();
+      onSubmit({ _id: todo._id, name, completed });
     };
-
+  
     return (
         <form onSubmit={handleSubmit}
             className="flex flex-col items-start gap-2 rounded"
@@ -38,13 +38,12 @@ export function AddTodo({ onSubmit }) {
                 </Switch>
             </label>
             <div className="flex items-center justify-between w-full">
-             <button
-                    className="px-1 py-0.5 rounded-md bg-blue-500 text-black hover:bg-blue-600 hover:px-1.5 hover:py-1"
-                    type="reset"
-                    onClick={() => setIsOpen(false)}
-                >
-                    Cancel
-                </button>
+            <button
+                className="px-1 py-0.5 rounded-md bg-blue-500 text-black hover:bg-blue-600 hover:px-1.5 hover:py-1"
+                type="reset"
+            >
+          Cancel
+            </button>
             <button
                 className="px-1 py-0.5 rounded-md bg-gray-300 text-black hover:bg-gray-400 hover:px-1.5 hover:py-1"
                 type="submit"
